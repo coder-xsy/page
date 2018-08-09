@@ -1,0 +1,632 @@
+<!doctype>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name='author' content='coder-xsy'>
+    <meta name='key' content='slide'>
+    <title>main_slide</title>
+    <script src='./js/jquery.js'></script>
+    <style type='text/css'>
+        body {
+            margin: 0px;
+            background-color: #312F2F;
+            min-width: 1000px;
+        }
+
+        .main_content,
+        .bottom_foot,
+        .top_head {
+            width: 100%;
+        }
+
+        .top_head {
+            height: 120px;
+            background-color: #961010;
+            margin: 0px;
+            position: relative;
+            top: 0xp;
+            left: 0px;
+        }
+
+        .head_title {
+            display: inline-block;
+            margin-left: 40px;
+            margin-top: 5px;
+        }
+
+        .cname {
+            font-family: 'STLiti';
+            font-size: 30px;
+            position: relative;
+            top: -10px;
+        }
+
+        .nav_line {
+            display: inline-block;
+            position: absolute;
+            right:18%;
+            bottom: 2px;
+            width:10%;
+           /* border:2px solid blue;*/
+        }
+
+        .status{
+            display: inline-block;
+            width:40%;
+            text-align: center;
+            /*border: 2px solid blue;*/
+            border-radius: 3px;
+            margin-left:5px;
+            box-shadow: 0px 0px  4px 2px #a61010;
+            
+        }
+
+        .head_img {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            display: block;
+        }
+        /*******************************************************************************************/
+
+        .slide,
+        .money_tree {
+            width: 100%;
+            position: relative;
+            left: 0px;
+            top: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .pre_img,
+        .next_img {
+            display: inline-block;
+            width: 15%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid #312f2f;
+            border-radius: 3px;
+            opacity: 0.4;
+        }
+
+        .pre_img {
+            left: 5%;
+        }
+
+        .next_img {
+            right: 5%;
+        }
+
+        .active_img {
+            position: absolute;
+            display: inline-block;
+            width: 50%;
+            left: 25%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 3px solid #312f2f;
+            border-radius: 9px;
+        }
+
+        .pre_btn,
+        .next_btn {
+            display: inline-block;
+            width: 2%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 3px;
+            visibility: hidden;
+        }
+
+        .pre_btn {
+            left: 1%;
+        }
+
+        .next_btn {
+            right: 1%;
+        }
+
+        .pre_btn:hover,
+        .next_btn:hover {
+            border: 3px solid rgb(184, 168, 168);
+            border-radius: 3px;
+            background-color: rgb(184, 168, 168);
+        }
+
+        .support_height {
+            display: inline-block;
+            width: 50%;
+            border: 3px solid #312f2f;
+            visibility: hidden;
+        }
+
+        .wait_img {
+            display: inline-block;
+            position: absolute;
+            width: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid #312f2f;
+            border-radius: 3px;
+            opacity: 0.4;
+        }
+
+        .pre_wait {
+            left: -20%;
+        }
+
+        .next_wait {
+            right: -20%;
+        }
+        /*************************************************************************************/
+
+        .money_tree {
+            top: 10px;
+        }
+
+        .tree {
+            display: inline-block;
+            width: 28%;
+        }
+
+        .tree_hide {
+            visibility: hidden;
+            margin-top: 50px;
+        }
+
+        .tree_show {
+            position: absolute;
+            left: 10%;
+            top: 50px;
+        }
+
+        .total {
+            display: inline-block;
+            position: absolute;
+            left: 5%;
+            top: 10px;
+            padding: 10px;
+        }
+
+        .total span {
+            padding: 5px;
+            margin-left: 10px;
+            border: 1px solid #B8A8A8;
+            border-radius: 3px;
+        }
+
+        .title_head {
+            text-align: center;
+            font-family: 'STHupo';
+            font-size: 25px;
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        .item_name {
+            display: inline-block;
+            position: absolute;
+            font-family: 'STCaiyun';
+            color: #F50E25;
+            font-size: 25px;
+            letter-spacing: 5px;
+            cursor: pointer;
+        }
+
+        .item_name:hover {
+            font-family: 'STHupo';
+            color: black;
+        }
+
+        .inout_list {
+            top: 25.8%;
+            left: 18.9%;
+        }
+
+        .in {
+            top: 38%;
+            left: 15.5%;
+        }
+
+        .out {
+            top: 32%;
+            left: 28%;
+        }
+        /********************************************************************************************/
+
+        .item_list {
+            display: inline-block;
+            position: absolute;
+            right: 5%;
+            top: 45px;
+            width: 40%;
+            height: 90%;
+            border: 1px solid white;
+            border-radius: 5px;
+
+            table-layout: fixed;
+            word-break: break-all;
+            word-wrap: break-word;
+            text-align: center;
+            overflow-y: scroll;
+        }
+
+        .item_list tr,.item_list tbody {
+            width: 100%;
+        }
+
+        .item_list tr td {
+            width: 16%;
+        }
+
+        .item_list tr :first-child {
+            width: 8%;
+        }
+
+
+
+        /*.item_list table {
+              
+        }*/
+        /*   thead,tbody,tfoot{
+            width:100%;
+        }
+        thead tr,tbody tr,tfoot tr{
+            width:100%;
+        }
+        .item_list tr td,.item_list tr th {
+            width: 21%;
+        }
+
+        .item_list tr td:first-child ,.item_list tr th:first-child{
+            width: 8%;
+        }*/
+
+
+        /**************************************************************************************************************/
+        .bottom_foot{
+            background-color:#861010;
+            margin: 0px;
+            height:150px;
+            position: relative;
+            text-align: center;
+            top:0px;
+            left: 0px;
+        }
+        .footer_img{
+            display: inline-block;
+            position: absolute;
+            top:0px;
+            left:0px;
+            height:100%;
+        }
+
+        .footer_text{
+            display: inline-block;
+            margin-top:20px; 
+            vertical-align: middle;
+            margin-bottom: 10px; 
+        }
+    </style>
+</head>
+
+<body>
+    <div class='top_head'>
+        <div class='head_title'>
+            <img src='./static/img/flower.png' alt='title'>
+            <span class='cname'>理财管理公司</span>
+        </div>
+        <div class='nav_line'>
+            <span class='status'><b>登录</b></span>
+            <span class='status'><b>注册</b></span>
+        </div>
+        <img class='head_img' src='./static/img/mei.png' width='20%' alt='flower'>
+    </div>
+    <div class='main_content'>
+        <div class='slide'>
+            <span class='slide_btn pre_btn'><img src='./static/img/left.png' width='100%'  alt='pre_img'></span>
+            <img class='support_height' src='./static/img/img1.jpg'>
+            <img class='wait_img pre_wait' src='./static/img/img1.jpg' alt='img1' title='imgno_0'>
+            <img class='pre_img' src='./static/img/img2.jpg' alt='img2' title='imgno_1'>
+            <img class='active_img' src='./static/img/img1.jpg' alt='img1' title='imgno_2'>
+            <img class='next_img' src='./static/img/img2.jpg' alt='img2' title='imgno_3'>
+            <img class='wait_img next_wait' src='./static/img/img1.jpg' alt='img1' title='imgno_4'>
+            <img class='wait_img next_wait' src='./static/img/img2.jpg' alt='img2' title='imgno_5'>
+            <span class='slide_btn next_btn'><img src='./static/img/right.png' width='100%' alt='next_img'></span>
+        </div>
+        <hr>
+        <p class='title_head'><b>资产详情</b></p>
+        <div class='money_tree'>
+            <img class='tree tree_hide' src='./static/img/tree.png' alt='money_tree'>
+            <img class='tree tree_show' src='./static/img/tree.png' alt='money_tree'>
+            <div class='total'>
+                <span id='income'><b>income:</b> 8000$</span>
+                <span id='pure_in'><b>pure_income:</b> 100$</span>
+                <span id='cost'><b>cost:</b> 7900$</span>
+            </div>
+            <span class='item_name inout_list'><b>收支表</b></span>
+            <span class='item_name in'><b>收入</b></span>
+            <span class='item_name out'><b>支出</b></span>
+
+            <!-- <div class='item_list'> -->
+            <table class='item_list' id='list' border='1px' frame='hsides' rules='all'>
+                <tr>
+                    <th>no</th>
+                    <th>项目名称</th>
+                    <th>时间</th>
+                    <th>数额($)</th>
+                    <th>经手人</th>
+                </tr>
+            </table>
+            <!-- </div>-->
+
+        </div>
+    </div>
+    <div class='bottom_foot'>
+        <img class='footer_img' src='./static/img/meif.png' alt='img'>
+        <img  width='5%'  class='footer_text' src='./static/img/flower.png'>
+        <h2 class='footer_text'>理财管理公司</h2>
+        <p>copyright2018</p>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var no = 2;
+            var action = false;
+
+            var income = '8000',
+                cost = '7900';
+
+            $('#income').html('<b>income: </b>' + income + '$');
+            $('#pure_in').html('<b>pure_income: </b>' + (income - cost) + '$');
+            $('#cost').html('<b>cost: </b>' + cost + '$');
+
+            var list = [{ item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'stuuudy', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' },
+            { item_name: 'study', time: '2018.01.21', count: '2000', person_name: 'xdd' }];
+
+
+            list.forEach(function (item, index, arr) {
+                var dom = '<tr><td>' + (index + 1) + '</td>' + '<td>' + item.item_name + '</td>' + '<td>' + item.time + '</td><td>' + item.count + '</td><td>' + item.person_name + '</td></tr>';
+                $('#list').append(dom);
+            });
+
+
+
+
+            function next() {
+                if (!action) {
+                    action = true;
+                    var active_no = no;
+                    var imgs = $('.slide').children().not('span').not('.support_height');
+                    no = (no + 1) % imgs.length;
+                    imgs.eq((active_no + imgs.length - 1) % imgs.length).animate({
+                        left: '-20%'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length - 1) % imgs.length).removeClass().addClass('wait_img pre_wait');
+                        imgs.eq((active_no + imgs.length - 1) % imgs.length).removeAttr('style');
+                    });
+
+                    imgs.eq(active_no).animate({
+                        left: '5%',
+                        width: '15%',
+                        opacity: '0.4',
+                        border: '1px solid #312f2f',
+                        borderRadius: '3px',
+                    }, 'slow', function () {
+                        imgs.eq(active_no).removeClass().addClass('pre_img');
+                        imgs.eq(active_no).removeAttr('style');
+                    });
+
+
+                    imgs.eq((active_no + imgs.length + 1) % imgs.length).animate({
+                        left: '25%',
+                        width: '50%',
+                        opacity: '1',
+                        border: '3px solid #312f2f',
+                        borderRadius: '9px'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length + 1) % imgs.length).removeClass().addClass('active_img');
+                        imgs.eq((active_no + imgs.length + 1) % imgs.length).removeAttr('style');
+
+                    });
+                    imgs.eq((active_no + imgs.length + 2) % imgs.length).animate({
+                        right: '5%'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length + 2) % imgs.length).removeClass().addClass('next_img');
+                        imgs.eq((active_no + imgs.length + 2) % imgs.length).removeAttr('style');
+                        imgs.eq((active_no + imgs.length - 2) % imgs.length).removeClass().addClass('wait_img next_wait');
+                        action = false;
+                    })
+                } else {
+
+                }
+            }
+
+
+            $('.next_btn').click(next);
+            /*function () {
+                if (!action) {
+                    action = true;
+                    var active_no = no;
+                    var imgs = $('.slide').children().not('span').not('.support_height');
+                    no = (no + 1) % imgs.length;
+                    imgs.eq((active_no + imgs.length - 1) % imgs.length).animate({
+                        left: '-20%'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length - 1) % imgs.length).removeClass().addClass('wait_img pre_wait');
+                        imgs.eq((active_no + imgs.length - 1) % imgs.length).removeAttr('style');
+                    });
+
+                    imgs.eq(active_no).animate({
+                        left: '5%',
+                        width: '15%',
+                        opacity: '0.4',
+                        border: '1px solid #312f2f',
+                        borderRadius: '3px',
+                    }, 'slow', function () {
+                        imgs.eq(active_no).removeClass().addClass('pre_img');
+                        imgs.eq(active_no).removeAttr('style');
+                    });
+
+
+                    imgs.eq((active_no + imgs.length + 1) % imgs.length).animate({
+                        left: '25%',
+                        width: '50%',
+                        opacity: '1',
+                        border: '3px solid #312f2f',
+                        borderRadius: '9px'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length + 1) % imgs.length).removeClass().addClass('active_img');
+                        imgs.eq((active_no + imgs.length + 1) % imgs.length).removeAttr('style');
+
+                    });
+                    imgs.eq((active_no + imgs.length + 2) % imgs.length).animate({
+                        right: '5%'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length + 2) % imgs.length).removeClass().addClass('next_img');
+                        imgs.eq((active_no + imgs.length + 2) % imgs.length).removeAttr('style');
+                        imgs.eq((active_no + imgs.length - 2) % imgs.length).removeClass().addClass('wait_img next_wait');
+                        action = false;
+                    })
+                } else {
+
+                }
+            });*/
+            /*   ***********************************************************************    */
+
+            function pre() {
+                if (!action) {
+                    action = true;
+                    var active_no = no;
+                    var imgs = $('.slide').children().not('span').not('.support_height');
+                    no = (no - 1 + imgs.length) % imgs.length;
+                    imgs.eq((active_no + imgs.length + 1) % imgs.length).animate({
+                        right: '-20%'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length + 1) % imgs.length).removeClass().addClass('wait_img next_wait');
+                        imgs.eq((active_no + imgs.length + 1) % imgs.length).removeAttr('style');
+                    });
+
+                    imgs.eq(active_no).animate({
+                        left: '80%',
+                        width: '15%',
+                        opacity: '0.4',
+                        border: '1px solid #312f2f',
+                        borderRadius: '3px',
+                    }, 'slow', function () {
+                        imgs.eq(active_no).removeClass().addClass('next_img');
+                        imgs.eq(active_no).removeAttr('style');
+                    });
+
+
+                    imgs.eq((active_no + imgs.length - 1) % imgs.length).animate({
+                        left: '25%',
+                        width: '50%',
+                        opacity: '1',
+                        border: '3px solid #312f2f',
+                        borderRadius: '9px'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length - 1) % imgs.length).removeClass().addClass('active_img');
+                        imgs.eq((active_no + imgs.length - 1) % imgs.length).removeAttr('style');
+
+                    });
+                    imgs.eq((active_no + imgs.length - 2) % imgs.length).animate({
+                        left: '5%'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length - 2) % imgs.length).removeClass().addClass('pre_img');
+                        imgs.eq((active_no + imgs.length - 2) % imgs.length).removeAttr('style');
+                        imgs.eq((active_no + imgs.length - 3) % imgs.length).removeClass().addClass('wait_img pre_wait');
+                        imgs.eq((active_no + imgs.length - 3) % imgs.length).removeAttr('style')
+                        action = false;
+                    })
+                } else {
+
+                }
+            }
+            $('.pre_btn').click(pre);
+            /*function () {
+                if (!action) {
+                    action = true;
+                    var active_no = no;
+                    var imgs = $('.slide').children().not('span').not('.support_height');
+                    no = (no - 1 + imgs.length) % imgs.length;
+                    imgs.eq((active_no + imgs.length +1) % imgs.length).animate({
+                        right: '-20%'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length + 1) % imgs.length).removeClass().addClass('wait_img next_wait');
+                        imgs.eq((active_no + imgs.length + 1) % imgs.length).removeAttr('style');
+                    });
+
+                    imgs.eq(active_no).animate({
+                        left: '80%',
+                        width: '15%',
+                        opacity: '0.4',
+                        border: '1px solid #312f2f',
+                        borderRadius: '3px',
+                    }, 'slow', function () {
+                        imgs.eq(active_no).removeClass().addClass('next_img');
+                        imgs.eq(active_no).removeAttr('style');
+                    });
+
+
+                    imgs.eq((active_no + imgs.length - 1) % imgs.length).animate({
+                        left: '25%',
+                        width: '50%',
+                        opacity: '1',
+                        border: '3px solid #312f2f',
+                        borderRadius: '9px'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length - 1) % imgs.length).removeClass().addClass('active_img');
+                        imgs.eq((active_no + imgs.length - 1) % imgs.length).removeAttr('style');
+
+                    });
+                    imgs.eq((active_no + imgs.length - 2) % imgs.length).animate({
+                        left: '5%'
+                    }, 'slow', function () {
+                        imgs.eq((active_no + imgs.length - 2) % imgs.length).removeClass().addClass('pre_img');
+                        imgs.eq((active_no + imgs.length - 2) % imgs.length).removeAttr('style');
+                        imgs.eq((active_no + imgs.length - 3) % imgs.length).removeClass().addClass('wait_img pre_wait');
+                        imgs.eq((active_no + imgs.length - 3) % imgs.length).removeAttr('style')
+                        action = false;
+                    })
+                } else {
+
+                }
+            });*/
+
+            var slide_ani = null;
+            /******************************************/
+            $('.slide').mouseenter(function () {
+                $('.slide_btn').css('visibility', 'visible');
+                clearInterval(slide_ani);
+            });
+            $('.slide').mouseleave(function () {
+                $('.slide_btn').css('visibility', 'hidden');
+                slide_ani = setInterval(next, 10000);
+            });
+
+        });
+    </script>
+</body>
+
+</html>
