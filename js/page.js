@@ -144,15 +144,17 @@ $(document).ready(function () {
     $('.pre_btn').click(pre);
 
 
-    var slide_ani = null;
+    var init_slide = setInterval(next,3000);
+    var slide_ani=null;
     /******************************************/
     $('.slide').mouseenter(function () {
         $('.slide_btn').css('visibility', 'visible');
+        clearInterval(init_slide);
         clearInterval(slide_ani);
     });
     $('.slide').mouseleave(function () {
         $('.slide_btn').css('visibility', 'hidden');
-        slide_ani = setInterval(next, 5000);
+        slide_ani = setInterval(next, 3000);
     });
 
 
