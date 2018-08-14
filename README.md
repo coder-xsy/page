@@ -1,2 +1,2 @@
 # page
-signal page
+![page](./static/img/out.gif)
