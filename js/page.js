@@ -144,17 +144,15 @@ $(document).ready(function () {
     $('.pre_btn').click(pre);
 
 
-    var init_slide = setInterval(next,3000);
-    var slide_ani=null;
+    var slide_ani = null;
     /******************************************/
     $('.slide').mouseenter(function () {
         $('.slide_btn').css('visibility', 'visible');
-        clearInterval(init_slide);
         clearInterval(slide_ani);
     });
     $('.slide').mouseleave(function () {
         $('.slide_btn').css('visibility', 'hidden');
-        slide_ani = setInterval(next, 3000);
+        slide_ani = setInterval(next, 5000);
     });
 
 
@@ -248,6 +246,22 @@ $(document).ready(function () {
     }
 
     reg_test();
+
+    $("#register_btn").click(function(){
+        var inf=register_inf();
+        console.log(inf);
+
+        $.post("./register",inf,function(data){
+            console.log(data);
+        });
+    });
+
+    $("#login_btn").click(function(){
+        var inf =login_inf();
+        $.post("./login",inf,function(data){
+            console.log(data);
+        });
+    });
 
 
 });
